@@ -76,19 +76,21 @@ c = ["relay",
 path = "/relay/v1/data/bidtraces/proposer_payload_delivered?limit={}&cursor={}"
 fb = "https://boost-relay.flashbots.net" + path  # flashbots
 et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical
-mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit
-mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated
-mf = "https://mainnet-relay.securerpc.com" + path  # manifold
+
+# mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit - no data
+# mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
+mf = "https://mainnet-relay.securerpc.com" + path  # manifold - Shidi
+
 ed = "https://relay.edennetwork.io" + path  # eden
 po = "https://pon.network" + path  # proof relay
 we = "https://relay.wenmerge.com" + path  # wenmerge
+
 ul = "https://relay.ultrasound.money" + path  # ultra sound
 ag = "https://agnostic-relay.net" + path  # agnostic
 ae = "https://aestus.live" + path  # Aestus
 
+
 # Endpoint class
-
-
 class Endpoint():
     def __init__(self, endpoint, relay):
         self.endpoint = endpoint
@@ -102,8 +104,8 @@ eps = [
     Endpoint(fb, "flashbots"),
     Endpoint(po, "proof relay"),
     Endpoint(et, "bloxroute (ethical)"),
-    Endpoint(mp, "bloxroute (max profit)"),
-    Endpoint(mr, "bloxroute (regulated)"),
+    # Endpoint(mp, "bloxroute (max profit)"),
+    # Endpoint(mr, "bloxroute (regulated)"),
     Endpoint(mf, "manifold"),
     Endpoint(ed, "eden"),
     Endpoint(we, "wenmerge"),
