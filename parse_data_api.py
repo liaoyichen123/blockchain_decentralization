@@ -91,6 +91,8 @@ ae = "https://aestus.live" + path  # Aestus
 
 
 # Endpoint class
+
+
 class Endpoint():
     def __init__(self, endpoint, relay):
         self.endpoint = endpoint
@@ -104,8 +106,8 @@ eps = [
     Endpoint(fb, "flashbots"),
     Endpoint(po, "proof relay"),
     Endpoint(et, "bloxroute (ethical)"),
-    # Endpoint(mp, "bloxroute (max profit)"),
-    # Endpoint(mr, "bloxroute (regulated)"),
+    Endpoint(mp, "bloxroute (max profit)"),
+    Endpoint(mr, "bloxroute (regulated)"),
     Endpoint(mf, "manifold"),
     Endpoint(ed, "eden"),
     Endpoint(we, "wenmerge"),
