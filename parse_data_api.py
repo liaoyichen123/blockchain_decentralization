@@ -1,3 +1,9 @@
+'''
+Credit: https://github.com/nerolation/mevboost.pics
+parse_data_api.py is used to collect data (the mev-boost relays is used to collect the data).
+We modify the scrip to collect data from Jan 1, 2024, to Jan 31, 2024 and add block number to the data.
+'''
+
 import os
 import re
 import time
