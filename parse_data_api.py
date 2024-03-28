@@ -10,10 +10,8 @@ import time
 import requests
 import argparse
 import pandas as pd
-from web3 import Web3
 from datetime import datetime
 from termcolor import colored
-from requests.exceptions import ConnectionError
 
 
 def get_end_slot():
