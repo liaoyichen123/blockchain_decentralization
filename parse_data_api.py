@@ -238,7 +238,8 @@ def query(eps):
                                     r["builder_pubkey"],
                                     r["value"],
                                     r["gas_used"],
-                                    r["gas_limit"]]
+                                    r["gas_limit"],
+                                    r["block_number"]]
                                    ) + "\n"
                 with open(FILENAME, 'a') as f:
                     f.write(content)
