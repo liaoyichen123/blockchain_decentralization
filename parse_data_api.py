@@ -13,14 +13,19 @@ from requests.exceptions import ConnectionError
 def get_end_slot():
     return int((datetime(2024, 1, 31, 23, 59, 59, 999999).timestamp() - datetime(2024, 1, 1).timestamp()) / 12)
 
+
 # Handle parameters
-parser = argparse.ArgumentParser(formatter_class=lambda prog: argparse.HelpFormatter(prog,max_help_position=60))
+parser = argparse.ArgumentParser(
+    formatter_class=lambda prog: argparse.HelpFormatter(prog, max_help_position=60))
 
 # Set True if starting from scratch
-parser.add_argument('-s', '--scratch', help="start from scratch - default: False",  action='store_true')
-parser.add_argument('-full', '--full', help="full scan - default: False",  action='store_true')
+parser.add_argument(
+    '-s', '--scratch', help="start from scratch - default: False",  action='store_true')
+parser.add_argument('-full', '--full',
+                    help="full scan - default: False",  action='store_true')
 parser.add_argument('-slot', '--slot', help="latest slot", default="latest")
-parser.add_argument('-l', '--location', help="Storage location", default="data_328/")
+parser.add_argument('-l', '--location',
+                    help="Storage location", default="data_328/")
 _args = parser.parse_args()
 
 # Start timestamp
@@ -40,7 +45,7 @@ FULL = vars(_args)["full"]
 # Parsing will start at the latest slot and then loop backwards
 START_SLOT = vars(_args)["slot"]
 if START_SLOT == "latest":
-    START_SLOT = 8326798 # 80 slots, more than 2 epoches
+    START_SLOT = 8326798  # 80 slots, more than 2 epoches
 else:
     START_SLOT = 8326798
 
@@ -65,19 +70,21 @@ c = ["relay",
 
 # API endpoints
 path = "/relay/v1/data/bidtraces/proposer_payload_delivered?limit={}&cursor={}"
-fb = "https://boost-relay.flashbots.net" + path
-et = "https://bloxroute.ethical.blxrbdn.com" + path
-mp = "https://bloxroute.max-profit.blxrbdn.com" + path
-mr = "https://bloxroute.regulated.blxrbdn.com" + path
-mf = "https://mainnet-relay.securerpc.com" + path
-ed = "https://relay.edennetwork.io" + path
-bn = "https://builder-relay-mainnet.blocknative.com" + path
-rl = "https://relayooor.wtf" + path
-ul = "https://relay.ultrasound.money" + path
-ag = "https://agnostic-relay.net" + path
-ae = "https://aestus.live" + path
+fb = "https://boost-relay.flashbots.net" + path  # flashbots
+et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical
+mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit
+mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated
+mf = "https://mainnet-relay.securerpc.com" + path  # manifold
+ed = "https://relay.edennetwork.io" + path  # eden
+po = "https://pon.network" + path  # proof relay
+we = "https://relay.wenmerge.com" + path  # wenmerge
+ul = "https://relay.ultrasound.money" + path  # ultra sound
+ag = "https://agnostic-relay.net" + path  # agnostic
+ae = "https://aestus.live" + path  # Aestus
 
 # Endpoint class
+
+
 class Endpoint():
     def __init__(self, endpoint, relay):
         self.endpoint = endpoint
@@ -86,15 +93,16 @@ class Endpoint():
         self.LIMIT = LIMIT
         self.endslot = POS_SWITCH_SLOT
 
+
 eps = [
     Endpoint(fb, "flashbots"),
-    Endpoint(bn, "blocknative"),
+    Endpoint(po, "proof relay"),
     Endpoint(et, "bloxroute (ethical)"),
     Endpoint(mp, "bloxroute (max profit)"),
     Endpoint(mr, "bloxroute (regulated)"),
     Endpoint(mf, "manifold"),
     Endpoint(ed, "eden"),
-    Endpoint(rl, "relayooor"),
+    Endpoint(we, "wenmerge"),
     Endpoint(ul, "ultrasound"),
     Endpoint(ag, "agnostic Gnosis"),
     Endpoint(ae, "aestus")
@@ -114,23 +122,27 @@ def get_last_file(off=0):
                 nr = max(nr)
             maxfilenr.append(nr)
     if len(maxfilenr) > 0:
-        return LOCATION + "mevboost_" +  str(max(maxfilenr)+off) + ".csv"
+        return LOCATION + "mevboost_" + str(max(maxfilenr)+off) + ".csv"
     else:
         OLD_DF = pd.DataFrame(columns=c)
         OLD_DF.to_csv(LOCATION + "mevboost_0.csv", index=None)
         return LOCATION + "mevboost_0.csv"
 
 # Set endslot to last known slot of relay
+
+
 def set_end_slot(df, eps):
     for ep in eps:
-        print(f"{len(df[df['relay'] == ep.relay])} blocks found for {ep.relay}")
+        print(
+            f"{len(df[df['relay'] == ep.relay])} blocks found for {ep.relay}")
         entries_per_ep = df[df['relay'] == ep.relay]["slot"].astype(int)
         if len(entries_per_ep) == 0:
             continue
         max_slot_ep = max(entries_per_ep)
         if max_slot_ep > ep.endslot and not FULL:
-            ep.endslot = max_slot_ep - 101 # One "tranche" more to anticipate bugs
-        print(f"{colored(ep.relay, 'green', attrs=['bold'])} last slot set to {ep.endslot}")
+            ep.endslot = max_slot_ep - 101  # One "tranche" more to anticipate bugs
+        print(
+            f"{colored(ep.relay, 'green', attrs=['bold'])} last slot set to {ep.endslot}")
 
 
 # Current file to proceed
@@ -160,7 +172,7 @@ if not IGNORE_OLD_DF:
 else:
     OLD_DF = pd.DataFrame(columns=c)
     if os.path.isfile(FILENAME):
-        input("There exists already a file named mevboost.csv. Press any key to continue.\n" \
+        input("There exists already a file named mevboost.csv. Press any key to continue.\n"
               + "Press Crtl+C to stop\n")
     for file in os.listdir(LOCATION):
         if file.startswith("mevboost_") and file.endswith(".csv"):
@@ -172,7 +184,7 @@ def get_with_cursor(ep, s, counter=0):
     res = None
     while res == None:
         try:
-            res = requests.get(ep.endpoint.format(ep.LIMIT,s), timeout=20)
+            res = requests.get(ep.endpoint.format(ep.LIMIT, s), timeout=20)
             if not res.status_code == 200:
                 raise
         except Exception as e:
@@ -180,16 +192,19 @@ def get_with_cursor(ep, s, counter=0):
             print(f"something failed: ({counter+1}/3) " + str(e))
             counter += 1
             print(colored(f"{ep.relay} failed", "red", attrs=["bold"]))
-            print(ep.endpoint.format(ep.LIMIT,s))
+            print(ep.endpoint.format(ep.LIMIT, s))
             if counter > 3:
                 return None
             res = None
     time.sleep(0.8)
-    print(colored(ep.endpoint.format(ep.LIMIT,s), "green"))
+    print(colored(ep.endpoint.format(ep.LIMIT, s), "green"))
     return eval(res.content.decode("utf-8"))
+
 
 # Keep track of parsed slots to start new file if too many entries
 slots_parsed = 0
+
+
 def query(eps):
     global slots_parsed, LEN_CURRENT_FILE, FILENAME
     # Loop over all endpoints
@@ -197,13 +212,13 @@ def query(eps):
         print(f"parsing {ep.relay}")
         # Loop from ep.slotFrom to endslot, endslot is always lower than the slotFrom
         while ep.slotFrom > ep.endslot:
-             # If more than 10k entries -> new file
+            # If more than 10k entries -> new file
             if LEN_CURRENT_FILE + slots_parsed > 10000:
-                    FILENAME = get_last_file(off=1)
-                    slots_parsed = 0
-                    LEN_CURRENT_FILE = 0
-                    pd.DataFrame(columns=c).to_csv(FILENAME, index=None)
-                    print(f"Start writing into new file: {FILENAME}")
+                FILENAME = get_last_file(off=1)
+                slots_parsed = 0
+                LEN_CURRENT_FILE = 0
+                pd.DataFrame(columns=c).to_csv(FILENAME, index=None)
+                print(f"Start writing into new file: {FILENAME}")
 
             results = get_with_cursor(ep, ep.slotFrom)
             if results == None:
@@ -224,7 +239,7 @@ def query(eps):
                                     r["value"],
                                     r["gas_used"],
                                     r["gas_limit"]]
-                                  ) + "\n"
+                                   ) + "\n"
                 with open(FILENAME, 'a') as f:
                     f.write(content)
 
@@ -235,7 +250,8 @@ def query(eps):
                 min_slot.add(int(r["slot"]))
 
                 if FULL:
-                    print(f"Block found for slot {r['slot']} with relay {ep.relay}")
+                    print(
+                        f"Block found for slot {r['slot']} with relay {ep.relay}")
 
             # If nothing found, decrease parse-window by LIMIT,
             # else take min slot -1 and start there
@@ -243,8 +259,7 @@ def query(eps):
                 ep.slotFrom -= ep.LIMIT
             else:
                 min_slot = min(min_slot)
-                ep.slotFrom = min_slot -1
-
+                ep.slotFrom = min_slot - 1
     return eps
 
 
