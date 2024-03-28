@@ -74,8 +74,8 @@ c = ["relay",
 
 # API endpoints
 path = "/relay/v1/data/bidtraces/proposer_payload_delivered?limit={}&cursor={}"
-fb = "https://boost-relay.flashbots.net" + path  # flashbots
-et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical
+fb = "https://boost-relay.flashbots.net" + path  # flashbots Yichen
+et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
 
 # mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit - no data
 # mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
