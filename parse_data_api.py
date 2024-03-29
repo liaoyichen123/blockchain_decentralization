@@ -81,9 +81,9 @@ et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
 # mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
 mf = "https://mainnet-relay.securerpc.com" + path  # manifold - Shidi
 
-ed = "https://relay.edennetwork.io" + path  # eden yangze
-po = "https://pon.network" + path  # proof relay yangze
-we = "https://relay.wenmerge.com" + path  # wenmerge yangze
+ed = "https://relay.edennetwork.io" + path  # eden Ze
+po = "https://pon.network" + path  # proof relay Ze
+we = "https://relay.wenmerge.com" + path  # wenmerge Ze
 
 ul = "https://relay.ultrasound.money" + path  # ultra sound yuanze
 ag = "https://agnostic-relay.net" + path  # agnostic yuanze
