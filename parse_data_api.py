@@ -77,8 +77,8 @@ path = "/relay/v1/data/bidtraces/proposer_payload_delivered?limit={}&cursor={}"
 fb = "https://boost-relay.flashbots.net" + path  # flashbots Yichen
 et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
 
-# mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit - no data
-# mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
+mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit - no data
+mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
 mf = "https://mainnet-relay.securerpc.com" + path  # manifold - Shidi
 
 ed = "https://relay.edennetwork.io" + path  # eden yangze
