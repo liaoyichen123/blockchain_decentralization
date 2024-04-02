@@ -1,0 +1,2 @@
+Max block number: 19129888, slot: 8326798
+Min Block Number: 18908895, slot: 8103599
