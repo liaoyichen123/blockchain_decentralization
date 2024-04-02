@@ -29,7 +29,7 @@ parser.add_argument('-full', '--full',
                     help="full scan - default: False",  action='store_true')
 parser.add_argument('-slot', '--slot', help="latest slot", default="latest")
 parser.add_argument('-l', '--location',
-                    help="Storage location", default="data_328/")
+                    help="Storage location", default="data/")
 _args = parser.parse_args()
 
 # Start timestamp
@@ -75,14 +75,14 @@ c = ["relay",
 # API endpoints
 path = "/relay/v1/data/bidtraces/proposer_payload_delivered?limit={}&cursor={}"
 fb = "https://boost-relay.flashbots.net" + path  # flashbots Yichen
-et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
+# et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
 
 mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit - no data
 mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
 mf = "https://mainnet-relay.securerpc.com" + path  # manifold - Shidi
 
 ed = "https://relay.edennetwork.io" + path  # eden yangze
-po = "https://pon.network" + path  # proof relay yangze
+# po = "https://pon.network/payloaddelivered"  # proof relay yangze
 we = "https://relay.wenmerge.com" + path  # wenmerge yangze
 
 ul = "https://relay.ultrasound.money" + path  # ultra sound yuanze
@@ -104,8 +104,8 @@ class Endpoint():
 
 eps = [
     Endpoint(fb, "flashbots"),
-    Endpoint(po, "proof relay"),
-    Endpoint(et, "bloxroute (ethical)"),
+    # Endpoint(po, "proof relay"),
+    # Endpoint(et, "bloxroute (ethical)"),
     Endpoint(mp, "bloxroute (max profit)"),
     Endpoint(mr, "bloxroute (regulated)"),
     Endpoint(mf, "manifold"),
