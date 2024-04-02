@@ -14,8 +14,8 @@ from datetime import datetime
 from termcolor import colored
 
 
-def get_end_slot():
-    return int((datetime(2024, 1, 31, 23, 59, 59, 999999).timestamp() - datetime(2024, 1, 1).timestamp()) / 12)
+# def get_end_slot():
+#     return int((datetime(2024, 1, 31, 23, 59, 59, 999999).timestamp() - datetime(2024, 1, 1).timestamp()) / 12)
 
 
 # Handle parameters
@@ -47,14 +47,14 @@ IGNORE_OLD_DF = vars(_args)["scratch"]
 FULL = vars(_args)["full"]
 
 # Parsing will start at the latest slot and then loop backwards
-START_SLOT = vars(_args)["slot"]
-if START_SLOT == "latest":
-    START_SLOT = 8326798  # 80 slots, more than 2 epoches
-else:
-    START_SLOT = 8326798
-
+# START_SLOT = vars(_args)["slot"]
+# if START_SLOT == "latest":
+#     START_SLOT = 8326798  # 80 slots, more than 2 epoches
+# else:
+#     START_SLOT = 8326798
+START_SLOT = 8326798
 # Slot of the Merge
-POS_SWITCH_SLOT = 4700013
+POS_SWITCH_SLOT = 8103599
 
 # API Limit
 LIMIT = 100
@@ -81,9 +81,9 @@ et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
 # mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
 mf = "https://mainnet-relay.securerpc.com" + path  # manifold - Shidi
 
-ed = "https://relay.edennetwork.io" + path  # eden Ze
-po = "https://pon.network" + path  # proof relay Ze no data
-we = "https://relay.wenmerge.com" + path  # wenmerge Ze
+ed = "https://relay.edennetwork.io" + path  # eden yangze
+po = "https://pon.network" + path  # proof relay yangze
+we = "https://relay.wenmerge.com" + path  # wenmerge yangze
 
 ul = "https://relay.ultrasound.money" + path  # ultra sound yuanze
 ag = "https://agnostic-relay.net" + path  # agnostic yuanze
