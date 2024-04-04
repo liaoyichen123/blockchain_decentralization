@@ -33,7 +33,7 @@ parser.add_argument('-l', '--location',
 _args = parser.parse_args()
 
 # Start timestamp
-startTS = datetime.now()
+# startTS = datetime.now()
 
 # Location to store mevboost.csv files
 LOCATION = vars(_args)["location"]
@@ -60,7 +60,7 @@ POS_SWITCH_SLOT = 8103599
 LIMIT = 100
 
 # Start timestamp
-startTS = datetime(2024, 1, 31, 23, 59, 59, 999999)
+# startTS = datetime(2024, 1, 31, 23, 59, 59, 999999)
 
 # column names
 c = ["relay",
