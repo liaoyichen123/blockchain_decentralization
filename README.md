@@ -19,7 +19,8 @@ The builder’s address is listed in the block’s transaction fee recipient fie
 In the block’s last transaction, the builder address transfers ETH to the proposer’s fee recipient address. 
 
 
-3. Problem Statement
+## Problem Statement
+The project focuses on enhancing the security and reliability of blockchain systems by proposing methodologies to measure their decentralization. By examining entities such as Proposers, Builders, and Relays within the period from January 1 to January 31, 2024, the project aims to provide insights that are crucial for the development of decentralized systems. This initiative highlights the importance of decentralization in improving both the security and reliability of blockchain technologies.
 4. Solution
    1. The source data are pulled from Google Cloud Platform BigQuery (bigquery-public-data.crypto_ethereum.transactions table)
    2. The source data is then processed using pandas
