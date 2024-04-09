@@ -1,6 +1,8 @@
 bak/
 data_328/
+data/
 .DS_Store
+key/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
