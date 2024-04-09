@@ -74,16 +74,16 @@ c = ["relay",
 
 # API endpoints
 path = "/relay/v1/data/bidtraces/proposer_payload_delivered?limit={}&cursor={}"
-fb = "https://boost-relay.flashbots.net" + path  # flashbots Yichen
-# et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
-
-mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit - no data
-mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
-mf = "https://mainnet-relay.securerpc.com" + path  # manifold - Shidi
-
-ed = "https://relay.edennetwork.io" + path  # eden yangze
-# po = "https://pon.network/payloaddelivered"  # proof relay yangze
-we = "https://relay.wenmerge.com" + path  # wenmerge yangze
+# fb = "https://boost-relay.flashbots.net" + path  # flashbots Yichen
+# # et = "https://bloxroute.ethical.blxrbdn.com" + path  # bloxroute ethical Yichen
+#
+# mp = "https://bloxroute.max-profit.blxrbdn.com" + path  # bloxroute max-profit - no data
+# mr = "https://bloxroute.regulated.blxrbdn.com" + path  # bloxroute regulated - no data
+# mf = "https://mainnet-relay.securerpc.com" + path  # manifold - Shidi
+#
+# ed = "https://relay.edennetwork.io" + path  # eden yangze
+# # po = "https://pon.network/payloaddelivered"  # proof relay yangze
+# we = "https://relay.wenmerge.com" + path  # wenmerge yangze
 
 ul = "https://relay.ultrasound.money" + path  # ultra sound yuanze
 ag = "https://agnostic-relay.net" + path  # agnostic yuanze
@@ -103,14 +103,14 @@ class Endpoint():
 
 
 eps = [
-    Endpoint(fb, "flashbots"),
-    # Endpoint(po, "proof relay"),
-    # Endpoint(et, "bloxroute (ethical)"),
-    Endpoint(mp, "bloxroute (max profit)"),
-    Endpoint(mr, "bloxroute (regulated)"),
-    Endpoint(mf, "manifold"),
-    Endpoint(ed, "eden"),
-    Endpoint(we, "wenmerge"),
+    # Endpoint(fb, "flashbots"),
+    # # Endpoint(po, "proof relay"),
+    # # Endpoint(et, "bloxroute (ethical)"),
+    # Endpoint(mp, "bloxroute (max profit)"),
+    # Endpoint(mr, "bloxroute (regulated)"),
+    # Endpoint(mf, "manifold"),
+    # Endpoint(ed, "eden"),
+    # Endpoint(we, "wenmerge"),
     Endpoint(ul, "ultrasound"),
     Endpoint(ag, "agnostic Gnosis"),
     Endpoint(ae, "aestus")
